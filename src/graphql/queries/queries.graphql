@@ -1,0 +1,44 @@
+
+query GetCharacter {
+	character @client
+}
+
+query GetReviews($episode: Episode!) {
+	reviews(episode: $episode) {
+		episode
+		stars
+		commentary
+	}
+}
+
+query GetADroid($droidID: ID!) {
+	droid(id: $droidID) {
+		id
+		name
+		friends {
+			id
+			name
+		}
+		appearsIn
+		primaryFunction
+	}
+}
+
+query GetHero {
+	hero {
+		name
+	}
+}
+
+query GetTheSchema {
+	__schema {
+		types {
+			name
+			kind
+			description
+			fields {
+				name
+			}
+		}
+	}
+}
