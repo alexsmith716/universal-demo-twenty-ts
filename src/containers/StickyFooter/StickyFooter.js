@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import GraphiQLExample from '../../components/GraphiQLExample';
-// import LinkTest from '../../components/jestTest/LinkTest';
+import LinkTest from '../../components/jestTest/LinkTest';
 
 const StickyFooter = () => {
 
@@ -22,7 +22,7 @@ const StickyFooter = () => {
 
 			<div className="row">
 
-				{/* <LinkTest page='https://github.com/graphql' children='Mouse Over Me!'/> */}
+				<LinkTest page='https://github.com/'>Github</LinkTest>
 
 			</div>
 
