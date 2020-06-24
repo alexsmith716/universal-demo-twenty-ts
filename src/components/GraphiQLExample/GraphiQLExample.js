@@ -247,7 +247,7 @@ export const GraphiQLExample = () => {
 
 		<div className="container">
 
-			<h1 className={styles.uniqueColor}>GraphiQL Webpack Example</h1>
+			<h2 className={styles.uniqueColor}>GraphiQL Webpack Example</h2>
 
 			{/* (>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) */}
 
