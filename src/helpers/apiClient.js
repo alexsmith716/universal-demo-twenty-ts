@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export default function apiClient(req) {
 
-	console.log('>>>> apiClient > REQ > IncomingMessage: ', req);
+	// console.log('>>>> apiClient > REQ > IncomingMessage: ', req);
 
 	const instance = axios.create();
 
@@ -22,7 +22,7 @@ export default function apiClient(req) {
 		error => Promise.reject(error.response ? error.response.data : error)
 	);
 
-	console.log('>>>> apiClient > INSTANCE: ', instance);
+	// console.log('>>>> apiClient > INSTANCE: ', instance);
 
 	return instance;
 }
