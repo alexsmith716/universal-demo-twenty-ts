@@ -45,6 +45,7 @@ const LinkTest = (props) => {
 
 						<div>
 							<a
+								data-testid='hover-anchorlink'
 								className={onMouseHoverStatus}
 								href={page || '#'}
 								onMouseEnter={() => setOnMouseHoverStatus('hovered')}
