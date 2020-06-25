@@ -1,34 +1,25 @@
 
 import React from 'react';
-import { act, render } from '@testing-library/react';
-
+import { render, getAllByTestId, fireEvent } from '@testing-library/react';
+// import { renderHook } from '@testing-library/react-hooks'
 import LinkTest from './LinkTest';
-
 
 test('Link changes the class when hovered', () => {
 
-	const component = renderer.create(
-		<LinkTest page='https://github.com/'>Github</LinkTest>,
+	const { container } = render(
+		<LinkTest page='https://github.com/'>Github</LinkTest>
 	);
 
-	let tree = component.toJSON();
+	expect(container).toMatchSnapshot();
 
-	expect(tree).toMatchSnapshot();
+	const [element] = getAllByTestId(container, 'hover-anchorlink');
 
-	// manually trigger the callback
-	tree.props.onMouseEnter();
+	fireEvent.mouseEnter(element)
 
-	// re-rendering
-	tree = component.toJSON();
+	expect(container).toMatchSnapshot();
 
-	expect(tree).toMatchSnapshot();
+	fireEvent.mouseLeave(element)
 
-	// manually trigger the callback
-	tree.props.onMouseLeave();
-
-	// re-rendering
-	tree = component.toJSON();
-
-	expect(tree).toMatchSnapshot();
+	expect(container).toMatchSnapshot();
 
 });
