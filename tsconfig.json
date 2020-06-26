@@ -24,10 +24,10 @@
     // "baseUrl": "./src",
     // "paths": {
     //   "~hooks/*": ["./hooks/*"]
-    // }
+    // },
   },
   "include": [
-    "src"
+    "src",
   ],
   "exclude": [
     "build",

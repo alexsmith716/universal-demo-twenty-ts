@@ -8,6 +8,26 @@
 * ----------------------------------------
 * ----------------------------------------
 
+https://www.apollographql.com/docs/graphql-tools/
+https://www.graphql-tools.com/docs/schema-stitching/
+	Schema stitching:
+		process of merging different schemas into one GraphQL schema
+		schemas can be local, remote, third-party services
+		schema stitching combines all different schemas into one schema that can be queried for all the data at once
+		create a single GraphQL schema from multiple underlying GraphQL APIs
+		query all data as part of one schema, and get everything needed in one request
+	
+	split Schema into different modules:
+	'stitchSchemas':
+		used to combine multiple GraphQL schemas together and produce a new schema that knows how to delegate parts of the query to the relevant subschemas
+
+https://www.googleapis.com/books/v1/volumes?q=kaplan%20test%20prep
+
+@testing-library/react
+@testing-library/react-hooks
+@testing-library/jest-dom
+@testing-library/user-event
+
 error "apollo-link-rest#@apollo/client@>=3" doesn't satisfy found match of "@apollo/client@3.0.0-rc.6"
 
 https://medium.com/@GavMac2010/developing-a-client-side-testing-strategy-193d740c2359

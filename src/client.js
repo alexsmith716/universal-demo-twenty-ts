@@ -87,25 +87,6 @@ const providers = {
 		persistConfig,
 	});
 
-	const triggerHooks = async (_routes, pathname) => {
-		// console.log('>>>> CLIENT > triggerHooks > store.getState() 1111 ######: ', store.getState());
-		spinnerContainer.classList.add('spinner-border');
-
-		// Don't fetch data for initial route, server has already done the work:
-		if (window.__PRELOADED__) {
-			// Delete initial data so that subsequent data fetches can occur:
-			console.log('>>>> CLIENT > triggerHooks > window.__PRELOADED__ YES: ', window.__PRELOADED__);
-			delete window.__PRELOADED__;
-		} else {
-			// Fetch mandatory data dependencies for 2nd route change onwards:
-			console.log('>>>> CLIENT > triggerHooks > window.__PRELOADED__ NO > await asyncGetPromises()');
-			await asyncGetPromises(_routes, pathname, store);
-		}
-
-		spinnerContainer.classList.remove('spinner-border');
-		// console.log('>>>> CLIENT > triggerHooks > store.getState() 2222 ######: ', store.getState());
-	};
-
 	const httpLink = createHttpLink({
 		uri: 'http://localhost:4000/graphql',
 	});
@@ -137,6 +118,25 @@ const providers = {
 		cache: new InMemoryCache().restore(window.__APOLLO_STATE__),
 		link,
 	});
+
+	const triggerHooks = async (_routes, pathname) => {
+		// console.log('>>>> CLIENT > triggerHooks > store.getState() 1111 ######: ', store.getState());
+		spinnerContainer.classList.add('spinner-border');
+
+		// Don't fetch data for initial route, server has already done the work:
+		if (window.__PRELOADED__) {
+			// Delete initial data so that subsequent data fetches can occur:
+			console.log('>>>> CLIENT > triggerHooks > window.__PRELOADED__ YES: ', window.__PRELOADED__);
+			delete window.__PRELOADED__;
+		} else {
+			// Fetch mandatory data dependencies for 2nd route change onwards:
+			console.log('>>>> CLIENT > triggerHooks > window.__PRELOADED__ NO > await asyncGetPromises()');
+			await asyncGetPromises(_routes, pathname, store);
+		}
+
+		spinnerContainer.classList.remove('spinner-border');
+		// console.log('>>>> CLIENT > triggerHooks > store.getState() 2222 ######: ', store.getState());
+	};
 
 	const hydrate = (_routes) => {
 		const element = (
