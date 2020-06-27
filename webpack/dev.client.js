@@ -85,7 +85,7 @@ const webpackClientConfig = {
 				loader: 'babel-loader',
 				options: {
 					babelrc: false,
-					configFile: path.resolve(rootPath, 'babel.config.client.js'),
+					configFile: path.resolve(rootPath, 'babel.config.js'),
 					// cacheDirectory: true,
 					// cacheCompression: false,
 				},
