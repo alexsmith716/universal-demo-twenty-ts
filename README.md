@@ -3,11 +3,12 @@
 * ----------------------------------------
 * ----------------------------------------
 
-### Focusing on unit testing, graphql & REST APIs, AWS, cloud based API dev, serverless applications, JAM stack, hooks, TypeScript, react router v5 & v6 (just spend last few days going over v6 docs -yikes!) and more
+### Focusing on unit testing, graphql & REST APIs, AWS, cloud based API dev, serverless applications, JAM stack, hooks, TypeScript, react router v5 & v6 and more
 
 * ----------------------------------------
 * ----------------------------------------
 
+https://github.com/apollographql/apollo-tooling
 https://www.apollographql.com/docs/graphql-tools/
 https://www.graphql-tools.com/docs/schema-stitching/
 	Schema stitching:

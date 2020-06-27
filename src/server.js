@@ -11,8 +11,6 @@ import { HelmetProvider } from 'react-helmet-async';
 import serialize from 'serialize-javascript';
 import fetch from 'node-fetch';
 
-import defineHeaders from './graphql/defineHeaders';
-
 import { GetReviews, GetADroid, GetCharacter } from './graphql/queries/queries.graphql';
 import * as graphqlQueries from './graphql/queries/queries.js';
 import { resolvers } from './graphql/resolvers/resolvers.js';
@@ -27,6 +25,8 @@ import { getUserAgent, isBot } from './utils/device';
 import Html from './helpers/Html';
 import apiClient from './helpers/apiClient';
 
+import defineHeaders from './utils/defineHeaders';
+
 import {
 	ApolloProvider,
 	ApolloClient,
@@ -40,9 +40,23 @@ import { RestLink } from 'apollo-link-rest';
 import { onError } from '@apollo/link-error';
 import { getDataFromTree } from '@apollo/react-ssr';
 
+//	provide for client ("to avoid network calls and mocking data"):
+//	https://github.com/apollographql/apollo-client/blob/master/docs/source/api/link/apollo-link-schema.md
+//	https://graphql.org/graphql-js/graphql/#entry-point
+
+//	When performing SSR on the same server, you can use this library to avoid making network calls
+//	build "new SchemaLink({ schema })"
+
+//	pre-fetch needed data (graphql/REST) and build a SSR schema
+//	pre-fetch needed data (graphql/REST) (SchemaLink) on server for SSR
+
 // -------------------------------------------------------------------
 
 const customFetch = (uri, options) => {
+	console.log('>>>> SERVER > customFetch > uri: ', uri);
+	console.log('>>>> SERVER > customFetch > options: ', options);
+	console.log('>>>> SERVER > customFetch > typeof options.body: ', typeof options.body);
+	console.log('>>>> SERVER > customFetch > options.body: ', options.body);
 	const pending = fetch(uri, {
 		method: options.method,
 		body: options.body,
@@ -59,10 +73,13 @@ const customFetch = (uri, options) => {
 const customFetchAsync = async (uri, options) => {
 	console.log('>>>> SERVER > customFetchAsync > uri: ', uri);
 	console.log('>>>> SERVER > customFetchAsync > options: ', options);
+	console.log('>>>> SERVER > customFetchAsync > typeof options.body: ', typeof options.body);
+	console.log('>>>> SERVER > customFetchAsync > options.body: ', options.body);
+	const headersX = options.headers.entries().reduce((accumulator, h) => { accumulator[h[0]] = h[1];  return accumulator;}, {})
 	const response = await fetch(uri, {
 		method: options.method,
 		body: options.body,
-		headers: options.headers
+		headers: headersX
 	})
 	try {
 		console.log('>>>> SERVER > customFetchAsync > response: ', response);
@@ -71,6 +88,11 @@ const customFetchAsync = async (uri, options) => {
 		console.log('>>>> SERVER > customFetchAsync > ERROR: ', error);
 	}
 };
+
+// function customFetch(url, options) {
+//    const headers = options.headers.entries().reduce((accumulator, h) => { accumulator[h[0]] = h[1];  return accumulator;}, {})
+//    return fetch(url, {…options, headers});
+// }
 
 /* eslint-disable consistent-return */
 
@@ -119,12 +141,13 @@ export default ({ clientStats }) => async (req, res) => {
 
 	const httpLink = createHttpLink({
 		uri: 'http://localhost:4000/graphql',
-		// fetch: customFetchAsync,
+		// fetch: customFetch,
 		fetch: fetch,
 	});
 
 	const restLink = new RestLink({ 
 		uri: 'https://rickandmortyapi.com/api/',
+		// endpoints: '/api',
 		customFetch: fetch,
 	});
 
@@ -147,7 +170,7 @@ export default ({ clientStats }) => async (req, res) => {
 	//	one of "uri" or "link" is required; if both are specified, "link" will take precedence
 	const link = ApolloLink.from([
 		//	authLink,
-		//	restLink,
+		// restLink,
 		errorLink,
 		//	retryLink,
 		httpLink,
@@ -199,9 +222,8 @@ export default ({ clientStats }) => async (req, res) => {
 
 		//	-----------------------
 		//	TODO:
-		//	write local schema to be directly portable to a server-side (as if existed server-side)
-		//	write local resolvers that fetch requested data from a REST API
-		//		(wrapping a REST API on the client)
+		//	write local schema to be directly portable to a server-side     (as if existed server-side)
+		//	write local resolvers that fetch requested data from a REST API (wrapping a REST API on the client)
 		//	-----------------------
 
 		//	@client directive: query and update cache (InMemoryCache)

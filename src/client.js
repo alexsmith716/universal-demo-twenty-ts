@@ -23,7 +23,7 @@ import {
 import { RestLink } from 'apollo-link-rest';
 import { onError } from "@apollo/link-error";
 
-import defineHeaders from './graphql/defineHeaders';
+import defineHeaders from './utils/defineHeaders';
 
 import { Provider } from 'react-redux';
 import asyncGetPromises from './utils/asyncGetPromises';
