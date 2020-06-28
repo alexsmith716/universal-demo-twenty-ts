@@ -36,7 +36,7 @@ import {
 	gql,
 } from '@apollo/client';
 
-import { RestLink } from 'apollo-link-rest';
+//	import { RestLink } from 'apollo-link-rest';
 import { onError } from '@apollo/link-error';
 import { getDataFromTree } from '@apollo/react-ssr';
 
@@ -47,8 +47,10 @@ import { getDataFromTree } from '@apollo/react-ssr';
 //	When performing SSR on the same server, you can use this library to avoid making network calls
 //	build "new SchemaLink({ schema })"
 
-//	pre-fetch needed data (graphql/REST) and build a SSR schema
+//	pre-fetch needed data (graphql/REST) and build a schema
 //	pre-fetch needed data (graphql/REST) (SchemaLink) on server for SSR
+
+//	https://github.com/apollographql/apollo-server
 
 // -------------------------------------------------------------------
 
@@ -75,11 +77,11 @@ const customFetchAsync = async (uri, options) => {
 	console.log('>>>> SERVER > customFetchAsync > options: ', options);
 	console.log('>>>> SERVER > customFetchAsync > typeof options.body: ', typeof options.body);
 	console.log('>>>> SERVER > customFetchAsync > options.body: ', options.body);
-	const headersX = options.headers.entries().reduce((accumulator, h) => { accumulator[h[0]] = h[1];  return accumulator;}, {})
+	// const headersX = options.headers.entries().reduce((accumulator, h) => { accumulator[h[0]] = h[1];  return accumulator;}, {})
 	const response = await fetch(uri, {
 		method: options.method,
 		body: options.body,
-		headers: headersX
+		headers: options.headers
 	})
 	try {
 		console.log('>>>> SERVER > customFetchAsync > response: ', response);
@@ -88,11 +90,6 @@ const customFetchAsync = async (uri, options) => {
 		console.log('>>>> SERVER > customFetchAsync > ERROR: ', error);
 	}
 };
-
-// function customFetch(url, options) {
-//    const headers = options.headers.entries().reduce((accumulator, h) => { accumulator[h[0]] = h[1];  return accumulator;}, {})
-//    return fetch(url, {…options, headers});
-// }
 
 /* eslint-disable consistent-return */
 
@@ -145,11 +142,11 @@ export default ({ clientStats }) => async (req, res) => {
 		fetch: fetch,
 	});
 
-	const restLink = new RestLink({ 
-		uri: 'https://rickandmortyapi.com/api/',
-		// endpoints: '/api',
-		customFetch: fetch,
-	});
+	//	const restLink = new RestLink({ 
+	//		uri: 'https://rickandmortyapi.com/api/',
+	//		// endpoints: '/api',
+	//		customFetch: fetch,
+	//	});
 
 	const cache = new InMemoryCache();
 

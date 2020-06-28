@@ -29,6 +29,11 @@ https://www.googleapis.com/books/v1/volumes?q=kaplan%20test%20prep
 @testing-library/jest-dom
 @testing-library/user-event
 
+GOING OVER:
+figuring the apollo server versions and narrowing for apollo server and REST and graphql SSR schema for SchemaLink 
+
+REMOVED: "apollo-link-rest": "^0.7.3",
+REMOVED: "graphql-anywhere": "^4.2.7"
 error "apollo-link-rest#@apollo/client@>=3" doesn't satisfy found match of "@apollo/client@3.0.0-rc.6"
 
 https://medium.com/@GavMac2010/developing-a-client-side-testing-strategy-193d740c2359
