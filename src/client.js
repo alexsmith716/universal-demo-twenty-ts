@@ -20,7 +20,7 @@ import {
 	ApolloLink
 } from '@apollo/client';
 
-import { RestLink } from 'apollo-link-rest';
+//	import { RestLink } from 'apollo-link-rest';
 import { onError } from "@apollo/link-error";
 
 import defineHeaders from './utils/defineHeaders';
@@ -91,9 +91,9 @@ const providers = {
 		uri: 'http://localhost:4000/graphql',
 	});
 
-	const restLink = new RestLink({ 
-		uri: 'https://rickandmortyapi.com/api/',
-	});
+	//	const restLink = new RestLink({ 
+	//		uri: 'https://rickandmortyapi.com/api/',
+	//	});
 
 	const errorLink = onError(({ graphQLErrors, networkError }) => {
 		if (graphQLErrors) {
