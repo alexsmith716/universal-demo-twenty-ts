@@ -6,7 +6,6 @@ import {
 	useQuery, 
 	useMutation,
 	useApolloClient, } from '@apollo/client';
-import { graphql } from '@apollo/react-hoc';
 
 import {
   fragmentTypeDroid,
