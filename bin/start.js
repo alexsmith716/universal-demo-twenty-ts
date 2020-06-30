@@ -12,7 +12,9 @@ const { getUserAgent } = require('../src/utils/device');
 const { isBot } = require('../src/utils/device');
 const logger = require('../src/utils/logger');
 
-// const device = require('../src/utils/device'); // getUserAgent isBot
+//	const { apolloServer } = require('../src/apolloServer');
+
+//	const device = require('../src/utils/device'); // getUserAgent isBot
 
 /* eslint-disable global-require */
 
@@ -23,7 +25,6 @@ logger.log(`>>>>>>>>>>>>>>>>> START > __CLIENT__ ?: ${__CLIENT__}`);
 logger.log(`>>>>>>>>>>>>>>>>> START > __SERVER__ ?: ${__SERVER__}`);
 logger.log(`>>>>>>>>>>>>>>>>> START > __DEVELOPMENT__ ?: ${__DEVELOPMENT__}`);
 logger.log(`>>>>>>>>>>>>>>>>> START > __DISABLE_SSR__ ?: ${__DISABLE_SSR__}`);
-logger.log(`>>>>>>>>>>>>>>>>> START > __DLLS__ ?: ${__DLLS__}`);
 logger.log(`>>>>>>>>>>>>>>>>> START > HOST ?: ${host}`);
 logger.log(`>>>>>>>>>>>>>>>>> START > PORT ?: ${port}`);
 
@@ -78,6 +79,7 @@ let isBuilt = false;
 
 const done = () => {
 	if (!isBuilt) {
+		//apolloServer(app);
 		server.listen(port, host, (err) => {
 			isBuilt = true;
 			logger.end('>>>> BIN > START > STATS COMPILER HAS COMPLETED BUILD !! WAIT IS OVER !');

@@ -8,10 +8,20 @@
 * ----------------------------------------
 * ----------------------------------------
 
+Nick Nance:
+Managing GraphQL Development at Scale
+https://www.youtube.com/watch?v=XOM8J4LaYFg
+
+it's a good idea to treat GraphQL as a thin API and routing layer:
+https://medium.com/apollo-stack/graphql-at-facebook-by-dan-schafer-38d65ef075af#.jduhdwudr
+
 https://github.com/apollographql/apollo-tooling
 https://www.apollographql.com/docs/graphql-tools/
 https://www.graphql-tools.com/docs/schema-stitching/
 	Schema stitching:
+		create a gateway that bundles GraphQL & REST services into one GraphQL schema
+		combine multiple data sets into a single distributable, explorable and maintainable API
+		process of combining multiple schemas from various APIs into a single Schema / API
 		process of merging different schemas into one GraphQL schema
 		schemas can be local, remote, third-party services
 		schema stitching combines all different schemas into one schema that can be queried for all the data at once
@@ -73,14 +83,6 @@ fetchPolicy values are:
 * ----------------------------------------
 
 GraphiQLExample > DuplicatesPlugin > `import 'graphiql/graphiql.css';`
-
-`WARNING in ℹ ｢wdm｣: Compiled with warnings.
-[1mMissing sources: Expected 2, found 0.
-		Found map: {}
-		Duplicate Sources / Packages - Duplicates found! ⚠️
-		* Duplicates: Found 2 similar files across 2 code sources (both identical + similar)
-			accounting for 44449 bundled bytes.
-		* Packages: Found 0 packages with 0 resolved, 0 installed, and 0 depended versions.`
 
 https://github.com/FormidableLabs/inspectpack/#diagnosing-duplicates
 https://github.com/FormidableLabs/inspectpack/issues/125
