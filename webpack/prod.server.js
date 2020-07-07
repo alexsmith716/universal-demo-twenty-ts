@@ -1,7 +1,7 @@
+process.env.IS_CLIENT = false;
+
 const path = require('path');
 const webpack = require('webpack');
-
-process.env.IS_CLIENT = false;
 
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');

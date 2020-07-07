@@ -137,7 +137,7 @@ export default ({ clientStats }) => async (req, res) => {
 	defineHeaders();
 
 	const httpLink = createHttpLink({
-		uri: 'http://localhost:4000/graphql',
+		uri: 'http://localhost:4001/graphql',
 		// fetch: customFetch,
 		fetch: fetch,
 	});

@@ -2,10 +2,11 @@ import React, { useState, useEffect, useCallback } from 'react';
 import GraphiQL from 'graphiql';
 import 'graphiql/graphiql.css';
 import { 
-	gql, 
-	useQuery, 
+	gql,
+	useQuery,
 	useMutation,
-	useApolloClient, } from '@apollo/client';
+	useApolloClient,
+} from '@apollo/client';
 
 import {
   fragmentTypeDroid,
@@ -371,7 +372,7 @@ export const GraphiQLExample = () => {
 									<GraphiQL
 										fetcher={async graphQLParams => {
 											const data = await fetch(
-												'http://localhost:4000/graphql',
+												'http://localhost:4001/graphql',
 												{
 													method: 'POST',
 													headers: {
