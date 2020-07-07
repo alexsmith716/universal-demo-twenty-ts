@@ -1,12 +1,8 @@
+process.env.IS_CLIENT = true;
+
 const path = require('path');
 const webpack = require('webpack');
 
-process.env.IS_CLIENT = true;
-
-// const TerserPlugin = require('terser-webpack-plugin');
-
-// optimize-css-assets-webpack-plugin: optimize \ minimize CSS assets
-// option > cssProcessor > default is `cssnano`
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');

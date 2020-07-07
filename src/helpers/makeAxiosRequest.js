@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default async function makeAxiosRequest(uri, options) {
 	const config = {
-		url: 'http://localhost:4000/graphql', 
+		url: 'http://localhost:4001/graphql', 
 		method: 'post', 
 		headers: options.headers, 
 		data: options.body
